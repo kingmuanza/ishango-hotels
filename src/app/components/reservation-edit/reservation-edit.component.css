@@ -1,0 +1,189 @@
+.innerPanel {}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+}
+
+tr.head {
+    background-color: #eee;
+}
+
+tr.head td {
+    border: solid lightgray 1px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+tr.rows:hover {
+    background-color: #e0e0e0;
+}
+
+tr.rows td {
+    text-align: left;
+    border: solid lightgray 1px;
+    font-size: 16px;
+    padding: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 2px;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 2px;
+}
+
+.tdId {
+    width: 55px;
+}
+
+.tdRoom {
+    width: 110px;
+    text-align: left;
+    padding-left: 14px;
+}
+
+.tdDate {
+    width: 100px;
+}
+
+.tdCarre {
+    width: 30px;
+}
+
+.tdName {
+    width: auto;
+    text-align: left !important;
+    padding-left: 4px;
+}
+
+.tdMontant {
+    width: auto;
+    text-align: right !important;
+    padding-left: 4px;
+}
+
+.page {
+    padding-top: 20px;
+}
+
+.ligne {
+    width: 100%;
+    white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+.cellule {
+    width: 33.33%;
+    display: inline-block;
+}
+
+.moitie {
+    width: 50%;
+    display: inline-block;
+}
+
+.gauche {
+    padding-right: 10px;
+}
+
+.milieu {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.droite {
+    padding-left: 10px;
+}
+
+div {
+    padding: 0;
+    margin: 0;
+}
+
+.dash {
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.dash.total {
+    background-color: #3f51b5;
+}
+
+.dash.percu {
+    background-color: #3f51b5;
+}
+
+.dash.impayes {
+    background-color: brown;
+}
+
+.dash-titre {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.dash-valeur {
+    font-size: 36px;
+}
+
+.mini {
+    font-size: 12px;
+}
+
+.petit-carree-violet {
+    height: 25px;
+    width: 25px;
+    background-color: #3f51b5;
+}
+
+.petit-carree-rouge {
+    height: 25px;
+    width: 25px;
+    background-color: brown;
+}
+
+.paiements {
+    margin-top: 20px;
+}
+
+.petit-titre {
+    font-size: 1.2rem;
+    color: #3f51b5;
+    margin-bottom: 10px;
+}
+
+.petit-contenu {
+    margin-top: 10px;
+    background-color: #eee;
+    color: #303030;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+
+.supprimer {
+    float: right;
+    font-size: 0.9rem;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.supprimer:hover {
+    opacity: 0.8;
+}
+
+.date {
+    font-size: 0.9rem;
+}

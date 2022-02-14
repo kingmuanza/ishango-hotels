@@ -1,0 +1,30 @@
+<div class="reservedBox" (mouseenter)="onMouseEnter(booking)" (mouseleave)="onMouseLeave(booking)">
+    <div class="reservedBoxBg" (dblclick)="onDayReservation($event)">
+        {{ day.day }}
+    </div>
+    <div *ngIf="isreserved">
+
+        <div class="reservedBoxDx-payee" *ngIf="isreservedDx === true && booking.payee">
+            &nbsp;
+        </div>
+        <div class="reservedBoxDx" *ngIf="isreservedDx === true && !booking.payee">
+            &nbsp;
+        </div>
+
+        <div class="reservedBoxCx-payee" *ngIf="isreservedCx === true && booking.payee">
+            &nbsp;
+        </div>
+        <div class="reservedBoxCx" *ngIf="isreservedCx === true && !booking.payee">
+            &nbsp;
+        </div>
+
+        <div class="reservedBoxSx-payee" *ngIf="isreservedSx && payee">
+            &nbsp;
+        </div>
+        <div class="reservedBoxSx" *ngIf="isreservedSx && !payee">
+            &nbsp;
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>

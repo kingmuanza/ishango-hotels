@@ -1,0 +1,33 @@
+<div *ngIf="!modification" class="grand-titre">
+    Nouvelle chambre
+</div>
+<div *ngIf="modification" class="grand-titre">
+    Modifier la chambre {{chambre.roomNumber}}
+</div>
+<div class="innerPanel" style="margin-top: 20px;">
+    <form class="" (ngSubmit)="onConfirm(f)" #f="ngForm">
+        <div>
+            <mat-form-field>
+                <input matInput name="porte" type="number" placeholder="Numéro de porte" [ngModel]="chambre.roomId" required>
+            </mat-form-field>&nbsp;
+            <mat-form-field>
+                <input matInput name="nom" placeholder="Nom" [ngModel]="chambre.roomNumber" required>
+            </mat-form-field>&nbsp;
+            <mat-form-field>
+                <mat-select name="type" placeholder="Type de chambre" [ngModel]="chambre.roomTypeName" required>
+                    <mat-option value="0">Single</mat-option>
+                    <mat-option value="1">Double</mat-option>
+                    <mat-option value="2">Suite</mat-option>
+                    <mat-option value="3">Suite présidentielle</mat-option>
+                </mat-select>
+            </mat-form-field>&nbsp;
+            <mat-form-field>
+                <input matInput name="cout" type="number" placeholder="Nuitée" [ngModel]="chambre.cout" required>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" [disabled]="f.invalid">Enregistrer</button>&nbsp;
+            <a (click)="supprimer()" mat-raised-button color="warn" *ngIf="modification" [disabled]="f.invalid">Supprimer</a>
+        </div>
+    </form>
+</div>

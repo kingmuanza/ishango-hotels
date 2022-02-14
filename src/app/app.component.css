@@ -1,0 +1,75 @@
+.connexion {
+    background-color: #3f51b5;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    overflow: hidden;
+}
+
+.connexion-box {
+    width: 50vw;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.connexion-box-content {
+    padding: 10vmin;
+    padding-left: 15vw;
+    padding-top: 25vh;
+}
+
+.connexion-box .titre {
+    text-transform: uppercase;
+    color: #3f51b5;
+    font-size: 3.0em;
+    font-weight: bold;
+}
+
+.menu-haut {
+    background-color: #3f51b5;
+    padding: 0px;
+    padding-left: 20px;
+}
+
+.menu-haut .titre {
+    text-transform: uppercase;
+    color: white;
+    font-size: 1.6em;
+    font-weight: 500;
+    display: inline-block;
+    padding-top: 17px;
+    transform: translateY(10%);
+}
+
+.menu-haut .nav {
+    display: inline-block;
+    padding-top: 23px;
+    padding-bottom: 18px;
+}
+
+.menu-haut .nav.droite {
+    float: right;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.menu-haut .nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.menu-haut .nav a.active {
+    color: white;
+    opacity: 1;
+    font-weight: 550;
+}

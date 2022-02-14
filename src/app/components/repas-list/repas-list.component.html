@@ -1,0 +1,27 @@
+<div class="grand-titre">
+    Liste des repas
+</div>
+<div class="innerPanel">
+    <div class="boutons">
+        <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr class="head">
+                    <td>Code</td>
+                    <td>Nom</td>
+                    <td>Prix</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rows" *ngFor="let r of repas" (click)="modifier(r)" style="cursor: pointer;">
+
+                    <td (click)="modifier(r)" class="tdId">{{ r.code }}</td>
+                    <td class="tdRoom">{{ r.nom }}</td>
+                    <td class="tdRoom">{{ r.cout | number}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="menu-haut">
+    <div class="menu-haut-contenu" style="width: 1220px; margin: auto;">
+        <div class="titre">
+            {{hotel ? hotel.nom: 'Aucun hotel'}}
+        </div>
+        <div class="nav">
+            <a routerLink="/dashboard" routerLinkActive="active">
+                <span>Calendrier</span>
+            </a>
+        </div>
+        <div class="nav">
+            <a routerLink="/reservations" routerLinkActive="active">
+                <span>Réservations</span>
+            </a>
+        </div>
+        <div class="nav">
+            <a routerLink="/paiements" routerLinkActive="active">
+                <span>Paiements</span>
+            </a>
+        </div>
+        <div class="nav">
+            <a routerLink="/chambres" routerLinkActive="active">
+                <span>Suites et chambres</span>
+            </a>
+        </div>
+        <div class="nav">
+            <a routerLink="/repas" routerLinkActive="active">
+                <span>Repas</span>
+            </a>
+        </div>
+        <div class="nav droite">
+            <a *ngIf="utilisateur">
+                <span>{{utilisateur.nom}}</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div style="width: 1200px; margin: auto;">
+    <router-outlet></router-outlet>
+</div>
+<form class="" (ngSubmit)="connexion(f)" #f="ngForm">
+    <div *ngIf="!utilisateur" class="connexion">
+        <div class="connexion-box">
+            <div class="connexion-box-content">
+                <div class="titre">Ishango hotels</div>
+                <div>
+                    <mat-form-field>
+                        <input matInput name="login" placeholder="Login" [ngModel]="login" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput name="passe" type="password" placeholder="Mot de passe" [ngModel]="passe" required>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="errorMessage" style="color: red">
+                    {{errorMessage}}
+                </div>
+                <div style="margin-top: 20px;">
+                    <button type="submit" mat-raised-button color="primary">Se connecter</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

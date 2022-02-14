@@ -1,0 +1,42 @@
+<div class="grand-titre">
+    Liste des chambres
+</div>
+<div class="innerPanel">
+    <div class="boutons">
+        <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button> &nbsp;
+        <button (click)="actualiser()" mat-raised-button color="primary">Actualiser</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr class="head">
+                    <td>Numéro Porte</td>
+                    <td>Nom</td>
+                    <td>Type de chambre</td>
+                    <td>Coût</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rows" *ngFor="let chambre of chambres" (click)="modifier(chambre)" style="cursor: pointer;">
+                    <td class="tdId">{{ chambre.roomId }}</td>
+                    <td class="tdId">{{ chambre.roomNumber }}</td>
+                    <td class="tdRoom">
+                        <ng-container *ngIf=" chambre.roomTypeName === '0' ">
+                            Single
+                        </ng-container>
+                        <ng-container *ngIf=" chambre.roomTypeName === '1' ">
+                            Double
+                        </ng-container>
+                        <ng-container *ngIf=" chambre.roomTypeName === '2' ">
+                            Suite
+                        </ng-container>
+                        <ng-container *ngIf=" chambre.roomTypeName === '3' ">
+                            Suite présidentielle
+                        </ng-container>
+                    </td>
+                    <td class="tdRoom">{{ chambre.cout | number}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

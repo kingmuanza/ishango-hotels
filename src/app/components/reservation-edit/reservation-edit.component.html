@@ -1,0 +1,77 @@
+<div class="page">
+    <div class="grand-titre">
+        Réservation
+    </div>
+    <div *ngIf="booking" class="contenu">
+        <div class="contenu">
+            Occupant : {{booking.noms}} {{booking.prenoms}},
+        </div>
+        <div class="contenu">
+            {{booking.roomNumber}},
+        </div>
+        <div class="contenu">
+            Du {{booking.startDate | date:'dd-MM-yyyy'}} au {{booking.endDate | date:'dd-MM-yyyy'}}
+        </div>
+    </div>
+
+    <div class="">
+        <div class="ligne">
+            <div class="cellule">
+                <div class="paiements">
+                    <div class="petit-titre">
+                        Liste des services additifs
+                    </div>
+                    <div *ngFor="let paiement of paiements" class="petit-contenu">
+                        <span class="supprimer" style="display: none;">
+                            Supprimer
+                        </span>
+                        <div>
+                            {{paiement.montant | number}} XAF
+                        </div>
+                        <div class="date">
+                            {{paiement.date | date: 'dd-MM-yyyy HH:mm'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cellule">
+                <div class="paiements">
+                    <div class="petit-titre">
+                        Liste des paiements effectués
+                    </div>
+                    <div class="ajouter">
+                        <form class="" (ngSubmit)="ajouterPaiement(f)" #f="ngForm">
+
+                            <mat-form-field>
+                                <input matInput name="montant" placeholder="Montant" [ngModel]="montant" required>
+                            </mat-form-field>
+                            &nbsp;
+                            <mat-form-field>
+                                <mat-select name="mode" placeholder="Moyen de paiement" [ngModel]="mode">
+                                    <mat-option value="OM">OM</mat-option>
+                                    <mat-option value="MTN">MTN Mobile Money</mat-option>
+                                    <mat-option value="ESPECS">Espèces</mat-option>
+                                    <mat-option value="AUTRE">Autre</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            &nbsp;
+                            <button mat-raised-button color="primary" type="button" (click)="ajouterPaiement(f)">Ajouter</button>
+
+                        </form>
+                    </div>
+                    <div *ngFor="let paiement of paiements" class="petit-contenu">
+                        <span class="supprimer" style="display: none;">
+                            Supprimer
+                        </span>
+                        <div>
+                            {{paiement.montant | number}} XAF
+                        </div>
+                        <div class="date">
+                            {{paiement.date | date: 'dd-MM-yyyy HH:mm'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
