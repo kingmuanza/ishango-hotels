@@ -30,6 +30,7 @@ import { ReservationEditComponent } from './components/reservation-edit/reservat
 import { PaiementEditComponent } from './components/paiement-edit/paiement-edit.component';
 import { RepasEditComponent } from './components/repas-edit/repas-edit.component';
 import { RepasListComponent } from './components/repas-list/repas-list.component';
+import { FactureVoirComponent } from './components/facture-voir/facture-voir.component';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -48,6 +49,7 @@ registerLocaleData(localeFr, 'fr');
     ChambreEditComponent,
     RepasListComponent,
     RepasEditComponent,
+    FactureVoirComponent,
   ],
   entryComponents: [
     FormReservationComponent

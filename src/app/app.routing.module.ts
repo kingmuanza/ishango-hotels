@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChambreEditComponent } from './components/chambre-edit/chambre-edit.component';
 import { ChambreListComponent } from './components/chambre-list/chambre-list.component';
+import { FactureVoirComponent } from './components/facture-voir/facture-voir.component';
 
 import { PageSchedulerComponent } from './components/page-scheduler/page-scheduler.component';
 import { PaiementEditComponent } from './components/paiement-edit/paiement-edit.component';
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'reservations', component: ReservationListComponent },
   { path: 'reservations/edit', component: ReservationEditComponent },
   { path: 'reservations/edit/:id', component: ReservationEditComponent },
+
+  { path: 'facture/voir/:id', component: FactureVoirComponent },
 
   { path: 'chambres', component: ChambreListComponent },
   { path: 'chambres/edit', component: ChambreEditComponent },

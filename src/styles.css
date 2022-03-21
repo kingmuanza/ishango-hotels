@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+.mat-grid-tile .mat-figure {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
 html,
 body {
     height: 100%;

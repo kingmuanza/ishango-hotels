@@ -1,5 +1,5 @@
 <div class="reservedBox" (mouseenter)="onMouseEnter(booking)" (mouseleave)="onMouseLeave(booking)">
-    <div class="reservedBoxBg" (dblclick)="onDayReservation($event)">
+    <div class="reservedBoxBg" (click)="onDayReservation($event)">
         {{ day.day }}
     </div>
     <div *ngIf="isreserved">

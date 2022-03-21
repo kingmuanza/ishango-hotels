@@ -1,7 +1,13 @@
-.connexion {
-    background-color: #3f51b5;
+.application {
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
+}
+
+.connexion {
+    height: 100vh;
+    width: 100vw;
+    background-color: #3f51b5;
     position: absolute;
     top: 0;
     left: 0;
@@ -18,6 +24,17 @@
     border-bottom-right-radius: 50px;
 }
 
+@media only screen and (max-width: 599px) {
+    .connexion-box {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        overflow: hidden;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
 .connexion-box-content {
     padding: 10vmin;
     padding-left: 15vw;
@@ -31,13 +48,18 @@
     font-weight: bold;
 }
 
-.menu-haut {
-    background-color: #3f51b5;
-    padding: 0px;
-    padding-left: 20px;
+@media only screen and (max-width: 599px) {
+    .connexion-box {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        overflow: hidden;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
 }
 
-.menu-haut .titre {
+.menu-gauche .titre {
     text-transform: uppercase;
     color: white;
     font-size: 1.6em;
@@ -47,13 +69,13 @@
     transform: translateY(10%);
 }
 
-.menu-haut .nav {
-    display: inline-block;
+.menu-gauche .nav {
+    display: block;
     padding-top: 23px;
     padding-bottom: 18px;
 }
 
-.menu-haut .nav.droite {
+.menu-gauche .nav.droite {
     float: right;
     padding-top: 25px;
     padding-bottom: 20px;
@@ -61,15 +83,121 @@
     text-align: center;
 }
 
-.menu-haut .nav a {
+.menu-gauche .nav a {
     color: white;
     text-decoration: none;
     margin-left: 50px;
     cursor: pointer;
 }
 
-.menu-haut .nav a.active {
+.menu-gauche .nav a.active {
     color: white;
     opacity: 1;
     font-weight: 550;
+}
+
+.muanza {
+    background-color: #fafafe;
+    height: 50px;
+    overflow-y: hidden;
+    padding-top: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+    .muanza {
+        background-color: #fafafe;
+        height: 50px;
+        overflow-y: hidden;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-bottom: 1px solid #eee;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+}
+
+.muanza-menu {
+    padding: 0;
+    margin: 0;
+    border: 0px solid #ddd;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    text-align: left;
+}
+
+@media only screen and (max-width: 599px) {
+    .muanza-menu {
+        padding: 0;
+        margin: 0;
+        border: 0px solid #ddd;
+        display: inline-block;
+        height: 50px;
+        width: 35px;
+        text-align: left;
+    }
+    .muanza-menu mat-icon {
+        color: #3f51b5;
+    }
+}
+
+.muanza-menu-2 {
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    width: 850px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+@media only screen and (max-width: 599px) {
+    .muanza-menu-2 {
+        height: 50px;
+        display: inline-block;
+        line-height: 50px;
+        width: 850px;
+        text-align: left;
+        padding-left: 15px;
+    }
+}
+
+.muanza-menu-3 {
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    width: 300px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.muanza-container {
+    display: flex;
+    margin: auto;
+    height: 50px;
+    width: 1200px;
+}
+
+.muanza-container>div {
+    height: 50px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.menu-gauche {
+    height: 100vh;
+    background-color: #3f51b5;
+    width: 300px;
+}
+
+.contenu-page {
+    width: 1200px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 599px) {
+    .contenu-page {
+        width: 100vw;
+        padding: 10px;
+    }
 }

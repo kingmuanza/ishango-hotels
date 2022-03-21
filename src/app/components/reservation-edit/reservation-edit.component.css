@@ -155,18 +155,40 @@ div {
 
 .paiements {
     margin-top: 20px;
+    width: 100%;
 }
 
 .petit-titre {
     font-size: 1.2rem;
     color: #3f51b5;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .petit-contenu {
     margin-top: 10px;
     background-color: #eee;
     color: #303030;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+
+.petit-contenu.reduction {
+    margin-top: 10px;
+    background-color: #3f51b5;
+    color: #fff;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+}
+
+.petit-contenu.impaye {
+    margin-top: 10px;
+    background-color: brown;
+    color: #fff;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
@@ -186,4 +208,29 @@ div {
 
 .date {
     font-size: 0.9rem;
+}
+
+mat-grid-tile {
+    text-align: left;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.dash {
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.dash.total {
+    background-color: #3f51b5;
+}
+
+.dash.percu {
+    background-color: #3f51b5;
+}
+
+.dash.impayes {
+    background-color: brown;
 }

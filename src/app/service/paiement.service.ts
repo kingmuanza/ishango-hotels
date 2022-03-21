@@ -85,9 +85,9 @@ export class PaiementService {
     const liste = [];
     const paiementstring = localStorage.getItem('ishango-hotels-paiements');
     if (paiementstring) {
-      console.log('Calendar bookings');
+      // console.log('Calendar bookings');
       const paiements = JSON.parse(paiementstring) as Array<Paiement>;
-      console.log(paiements);
+      // console.log(paiements);
       paiements.forEach((paiement) => {
         const b = paiement;
         b.date = new Date(b.date);

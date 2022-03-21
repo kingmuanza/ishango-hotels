@@ -1,0 +1,103 @@
+.facture {
+    margin: auto;
+    margin-top: 50px;
+    width: 21cm;
+    height: 29.7cm;
+    border: 1px solid #303030;
+    padding: 40px;
+}
+
+mat-grid-tile {
+    height: 200px;
+}
+
+mat-grid-list {
+    height: 200px;
+    overflow: hidden;
+}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.soustitre {
+    width: 100%;
+    text-align: center;
+    background-color: orange;
+}
+
+tr.head {
+    background-color: #eee;
+}
+
+tr.head td.premier {
+    border-right: solid white 5px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+tr.head td.fin {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+tr.rows:hover {
+    background-color: #e0e0e0;
+}
+
+tr.rows td {
+    text-align: left;
+    border: solid lightgray 0px;
+    font-size: 16px;
+    padding: 3px;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 2px;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 2px;
+}
+
+.tdId {
+    width: 55px;
+}
+
+.tdRoom {
+    width: 110px;
+    text-align: left;
+    padding-left: 14px;
+}
+
+.tdDate {
+    width: 100px;
+    text-align: right !important;
+}
+
+.tdCarre {
+    width: 30px;
+}
+
+.tdName {
+    width: auto;
+    text-align: left !important;
+    padding-left: 4px;
+}
+
+.tdMontant {
+    width: auto;
+    text-align: right !important;
+    padding-left: 4px;
+}

@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   passe = 'dona2022';
   hotel: Hotel;
   interval;
+  showFiller = false;
 
   // storage: FirebaseStorage;
 
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.autoConnexion();
   }
 
   async connexion2(form: NgForm) {
@@ -78,14 +80,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async connexion(form: NgForm) {
-    this.errorMessage = '';
-    if (form.invalid) {
-      return;
-    }
-    const login = Utility.toString(form.value.login);
-    const passe = Utility.toString(form.value.passe);
-
+  sousConnexion(login: string, passe: string) {
     this.authService.connexion(login, passe).then((utilisateur) => {
       console.log('CONNEXION AVEC SUCCES !!!');
       console.log(utilisateur);
@@ -94,6 +89,9 @@ export class AppComponent implements OnInit {
           this.utilisateur = utilisateur;
           this.hotel = hotel;
         });
+
+        localStorage.setItem('ishango-utilisateur', JSON.stringify(utilisateur));
+        localStorage.setItem('ishango-hotel', JSON.stringify(hotel));
 
         setInterval(() => {
           console.log('je synchronise');
@@ -109,6 +107,39 @@ export class AppComponent implements OnInit {
       console.log(e);
       this.errorMessage = e;
     });
+  }
+
+  autoConnexion() {
+    const utilisateurString = localStorage.getItem('ishango-utilisateur');
+    const hotelString = localStorage.getItem('ishango-hotel');
+    if (utilisateurString && hotelString) {
+      this.utilisateur = JSON.parse(utilisateurString);
+      this.hotel = JSON.parse(hotelString);
+      this.authService.utilisateurGlobal = JSON.parse(utilisateurString);
+      this.authService.hotelGlobal = JSON.parse(hotelString);
+    } else {
+
+    }
+  }
+
+  deconnexion() {
+    const oui = confirm('Etes-vous sûr de vouloir vous déconnecter');
+    if (oui) {
+      localStorage.removeItem('ishango-utilisateur');
+      localStorage.removeItem('ishango-hotel');
+      this.utilisateur = null;
+      this.hotel = null;
+    }
+  }
+
+  async connexion(form: NgForm) {
+    this.errorMessage = '';
+    if (form.invalid) {
+      return;
+    }
+    const login = Utility.toString(form.value.login);
+    const passe = Utility.toString(form.value.passe);
+    this.sousConnexion(login, passe);
   }
 
   synchronisateur(idhotel: string): Promise<string> {

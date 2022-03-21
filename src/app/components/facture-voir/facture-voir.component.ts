@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BookingDto } from 'src/app/model/bookingdto';
+import { Hotel } from 'src/app/model/hotel';
 import { Paiement } from 'src/app/model/paiementdto';
 import { RepasReservation } from 'src/app/model/repas.reservation.model';
+import { AuthentificationService } from 'src/app/service/authentification.service';
 import { PaiementService } from 'src/app/service/paiement.service';
 import { RepasReservationService } from 'src/app/service/repas-reservation.service';
 import { RepasService } from 'src/app/service/repas.service';
 import { ReservationService } from 'src/app/service/reservation-service';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
-  selector: 'app-reservation-edit',
-  templateUrl: './reservation-edit.component.html',
-  styleUrls: ['./reservation-edit.component.css']
+  selector: 'app-facture-voir',
+  templateUrl: './facture-voir.component.html',
+  styleUrls: ['./facture-voir.component.css']
 })
-export class ReservationEditComponent implements OnInit {
+export class FactureVoirComponent implements OnInit {
+
+  @ViewChild('pdfTable') pdfTable: ElementRef;
 
   booking: BookingDto;
   paiements = [];
@@ -28,8 +34,10 @@ export class ReservationEditComponent implements OnInit {
 
   mode = 'OM';
   montant = 0;
+  hotel: Hotel;
   constructor(
     private router: Router,
+    private authService: AuthentificationService,
     private route: ActivatedRoute,
     private reservationService: ReservationService,
     private paiementService: PaiementService,
@@ -38,6 +46,7 @@ export class ReservationEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.hotel = this.authService.hotelGlobal;
     this.repasService.getAllFromFirebase().then((repas) => {
       this.repas = repas;
       console.log('this.repas');
@@ -125,6 +134,24 @@ export class ReservationEditComponent implements OnInit {
 
   facture() {
     this.router.navigate(['facture', 'voir', this.booking.bookingId]);
+  }
+
+  imprimer() {
+
+  }
+
+  exportAsPDF() {
+    console.log('exportAsPDF');
+    const data = document.getElementById('pdfTable');
+    console.log('data');
+    console.log(data);
+    html2canvas(data).then(canvas => {
+      const contentDataURL = canvas.toDataURL('image/jpeg');  // 'image/jpeg' for lower quality output.
+      const pdf = new jsPDF('p', 'cm', 'a4'); // Generates PDF in landscape mode
+      // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
+      pdf.addImage(contentDataURL, 'JPEG', 0, 0, 21.0, 29.7);
+      pdf.save('facture' + this.booking.bookingId + '.pdf');
+    });
   }
 
 }

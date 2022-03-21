@@ -5,6 +5,7 @@ export class Paiement {
     booking: any;
     bookingID: string;
     idhotel: string;
+    mode: string;
 
     constructor(booking: any, montant: number) {
         this.id = new Date().getTime() + '';

@@ -1,0 +1,139 @@
+<div>
+    <button mat-raised-button type="button" color="primary" (click)="exportAsPDF()" style="float: right;">
+        Imprimer
+    </button>
+</div>
+<div class="facture" id="pdfTable" #pdfTable>
+    <mat-grid-list cols="5" rowHeight="200px">
+        <mat-grid-tile>
+            <img src="../../../assets/logodona.jpg" style="width: 80%; margin-bottom: 20px;" alt="">
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div style="margin-left: 0px; padding-top: 20px; text-align: left;">
+                <div>
+                    {{hotel ? hotel.nom: 'Aucun hotel'}}
+                </div>
+                <div>
+                    Tel : 696543495
+                </div>
+                <div>
+                    Email : 696543495
+                </div>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile></mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+            <div style=" width: 100%;">
+                <div style="margin-top: 100px; text-align: center;">
+                    <div>
+                        A
+                    </div>
+                    <div>
+                        {{booking.noms}} {{booking.prenoms}}
+                    </div>
+                    <div>
+                        Tel : {{booking.tel}}
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+    <div style="margin-top: 0px;">
+        <b>
+        Facture :
+      </b> 1234567899
+    </div>
+    <div style="text-align: left;">
+        Date : 2020-02-28
+    </div>
+
+
+    <div style="margin-top: 20px;">
+        <table>
+            <tr class="head">
+                <td class="premier">Désignation</td>
+                <td class="premier">Quantité</td>
+                <td class="premier">Prix U</td>
+                <td class="fin">Total</td>
+            </tr>
+
+            <tr class="rows" style="background-color: orange; margin-top: 5px; margin-bottom: 5px;">
+                <td colspan="4">
+                    <div class="soustitre">
+                        Hébergement
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="rows">
+                <td class="tdName">{{ booking.roomNumber }}</td>
+                <td class="tdDate">{{ nombreJours }}</td>
+                <td class="tdDate">{{ booking.cout | number }}</td>
+                <td class="tdDate">
+                    {{ booking.cout * nombreJours | number }}
+                </td>
+            </tr>
+            <tr class="rows">
+                <td class="tdName"></td>
+                <td class="tdDate"></td>
+                <td class="tdDate" style=" font-size: 18px;">
+                    <b>Sous total</b>
+                </td>
+                <td class="tdDate" style="font-size: 18px;">
+                    <b>{{ booking.cout * nombreJours | number }}</b>
+                </td>
+            </tr>
+
+            <tr class="rows" style="background-color: orange;margin-top: 5px; margin-bottom: 5px;">
+                <td colspan="4">
+                    <div class="soustitre">
+                        Restauration
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="rows" *ngFor="let repasReservation of repasReservations">
+                <td class="tdName">{{ repasReservation.repas.nom }}</td>
+                <td class="tdDate">{{ repasReservation.quantite | number }}</td>
+                <td class="tdDate">{{ repasReservation.repas.cout | number }}</td>
+                <td class="tdDate">
+                    {{ repasReservation.quantite * repasReservation.repas.cout | number }}
+                </td>
+            </tr>
+            <tr class="rows">
+                <td class="tdName"></td>
+                <td class="tdDate"></td>
+                <td class="tdDate" style=" font-size: 18px;">
+                    <b>Sous total</b>
+                </td>
+                <td class="tdDate" style="font-size: 18px;">
+                    <b>{{ total  | number }}</b>
+                </td>
+            </tr>
+            <tr class="rows">
+                <td class="tdName"></td>
+                <td class="tdDate"></td>
+                <td class="tdDate" style=" font-size: 18px;">
+                    <b>Réduction</b>
+                </td>
+                <td class="tdDate" style="font-size: 18px;">
+                    <b>-{{ booking.reduction  | number }}</b>
+                </td>
+            </tr>
+            <tr class="rows" style="background-color: orange;">
+                <td class="tdName"></td>
+                <td class="tdDate"></td>
+                <td class="tdDate" style=" font-size: 18px;">
+                    <b>Total</b>
+                </td>
+                <td class="tdDate" style="font-size: 18px;">
+                    <b>{{ booking.cout * nombreJours + total - booking.reduction | number }}</b>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

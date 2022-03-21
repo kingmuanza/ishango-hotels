@@ -1,7 +1,9 @@
-<div class="grand-titre">
-    Tableau de bord
-</div>
-<div *ngIf="rooms.length > -1" class="pagescheduler">
-    <app-calendar [day]="day" [month]="month" [year]="year" [rooms]="rooms" [bookings]="bookings" (changereservation)="onReservationChanged($event)" (reservation)="onDayReservation($event)">
-    </app-calendar>
+<div>
+    <div class="grand-titre">
+        Tableau de bord
+    </div>
+    <div *ngIf="rooms.length > -1" class="pagescheduler">
+        <app-calendar [day]="day" [month]="month" [year]="year" [rooms]="rooms" [bookings]="bookings" (changereservation)="onReservationChanged($event)" (reservation)="onDayReservation($event)">
+        </app-calendar>
+    </div>
 </div>
