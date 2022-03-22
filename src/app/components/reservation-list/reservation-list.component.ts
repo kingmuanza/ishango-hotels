@@ -14,16 +14,16 @@ import { ReservationService } from 'src/app/service/reservation-service';
 })
 export class ReservationListComponent implements OnInit, AfterViewInit {
 
-  @Output() selectreservation = new EventEmitter<SelectReservationArg>();
-  @ViewChild('fastsearch') fastsearch: ElementRef;
   persons$: Observable<object>;
   years = '0';
   months = '0';
+  noms = '';
   name = '';
   bookings = [];
 
   montantPercus = 0;
   total = 0;
+  resultats = [];
 
   constructor(
     private reservationService: ReservationService,
@@ -36,59 +36,90 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
 
   actualiser() {
     this.reservationService.getAllFromFirebase().then((bookings) => {
-    this.bookings = bookings;
-    this.montantPercus = 0;
-    this.bookings.forEach((booking) => {
-      this.montantPercus += booking.montantPercu;
-      this.total += booking.cout;
+      this.bookings = bookings;
+      this.resultats = bookings;
+      this.montantPercus = 0;
+      this.total = 0;
+      this.bookings.forEach((booking) => {
+        this.montantPercus += booking.montantPercu;
+        this.total += booking.cout;
+      });
+      console.log('this.bookings');
+      console.log(this.bookings);
     });
-    console.log('this.bookings');
-    console.log(this.bookings);
-  });
+
+    this.months = '0';
+    this.years = '0';
 
   }
 
   ngAfterViewInit() {
-    fromEvent(this.fastsearch.nativeElement, 'keyup').pipe(
-      debounceTime(150),
-      distinctUntilChanged(),
-      tap(() => {
-        this.name = this.fastsearch.nativeElement.value;
-        const search = new SearchReservationArg(+this.years, +this.months, this.name);
-        this.persons$ = this.reservationService.getReservationByName(search);
-      })
-    ).subscribe();
-    setTimeout(() => {
-      const s = new SearchReservationArg(0, 0, '');
-      this.persons$ = this.reservationService.getReservationByName(s);
-    }, 1000);
   }
 
-  onYearsChange(data) {
-    console.log('data');
-    console.log(data);
-    console.log(this.months);
-    console.log(this.name);
-    this.years = data.value;
-    const search = new SearchReservationArg(+this.years, +this.months, this.name);
-    this.persons$ = this.reservationService.getReservationByName(search);
+  rechercher() {
+    this.resultats = this.bookings;
+    this.onYearsChange();
+    this.onMonthsChange();
+    this.onNomChange();
   }
 
-  onMonthsChange(data) {
-    console.log('data');
-    console.log(data);
-    this.months = data.value;
-    const search = new SearchReservationArg(+this.years, +this.months, this.name);
-    this.persons$ = this.reservationService.getReservationByName(search);
+  onYearsChange() {
+    this.resultats = [];
+    if (Number(this.years) > 0) {
+      this.bookings.forEach((booking) => {
+        if (booking.startDate) {
+          const date = new Date(booking.startDate);
+          const annee = date.toISOString().split('T')[0].split('-')[0];
+          if (annee === this.years) {
+            this.resultats.push(booking);
+          }
+        }
+      });
+    } else {
+      this.resultats = this.bookings;
+    }
+  }
+
+  onMonthsChange() {
+    const resultats = [];
+    if (Number(this.months) > 0) {
+      this.resultats.forEach((booking) => {
+        if (booking.startDate) {
+          const date = new Date(booking.startDate);
+          const mois = date.toISOString().split('T')[0].split('-')[1];
+          if (Number(mois) === Number(this.months)) {
+            resultats.push(booking);
+          }
+        }
+      });
+      this.resultats = resultats;
+    }
   }
 
   onSelect(person: PersonDto) {
-    const roomId = person.roomId;
-    const startDate = person.startDate;
-    const endDate = person.endDate;
-    const args = new SelectReservationArg(roomId, startDate, endDate);
-    this.selectreservation.emit(args);
     this.router.navigate(['reservations', 'edit', person.bookingId]);
   }
 
+  onNomChange() {
+    const resultats = [];
+    const mot = this.noms;
+    console.log('onNomChange');
+    console.log(mot);
+    console.log(this.resultats.length);
+    console.log('les autres traitements sont finis');
+    if (mot) {
+      this.resultats.forEach((booking) => {
+        console.log(booking.name);
+        if (booking.name) {
+          let nom: string;
+          nom = booking.name;
+          if (nom.indexOf(mot) !== -1) {
+            resultats.push(booking);
+          }
+        }
+      });
+      this.resultats = resultats;
+    } else {
+    }
+  }
 }

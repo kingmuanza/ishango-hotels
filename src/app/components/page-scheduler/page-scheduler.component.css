@@ -1,4 +1,14 @@
-
 .pagescheduler {
     margin: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+    .rotate {
+        transform: rotate(90deg) translateY(-100%);
+        transform-origin: top left;
+        width: 150vh;
+        padding-right: 20vh;
+        padding-bottom: 20vw;
+        padding-top: 20vw;
+    }
 }

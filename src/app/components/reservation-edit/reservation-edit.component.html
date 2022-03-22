@@ -1,24 +1,32 @@
 <div class="page">
-    <button mat-raised-button type="button" color="primary" (click)="facture()" style="float: right;">
+    <button mat-raised-button type="button" color="primary" (click)="facture()" class="hideOnMobile flotte">
         Voir la facture
     </button>
-    <div class="grand-titre">
-        Réservation
+    <div class="info-base">
+        <div class="grand-titre">
+            Réservation
+        </div>
+        <div *ngIf="booking" class="contenu">
+            <div class="contenu">
+                Occupant : {{booking.noms}} {{booking.prenoms}},
+            </div>
+            <div class="contenu">
+                Chambre : {{booking.roomNumber}},
+            </div>
+            <div class="contenu">
+                Du
+                <b>{{booking.startDate | date:'EEEE'}}</b> {{booking.startDate | date:'dd MMMM yyyy'}} au
+                <b>{{booking.endDate | date:'EEEE'}}</b> {{booking.endDate | date:'dd MMMM yyyy'}}
+            </div>
+        </div>
+
+        <div class="showOnMobile" style="margin-top: 10px;">
+            <button mat-raised-button type="button" color="primary" (click)="facture()" class="showOnMobile">
+                Voir la facture
+            </button>
+        </div>
     </div>
-    <div *ngIf="booking" class="contenu">
-        <div class="contenu">
-            Occupant : {{booking.noms}} {{booking.prenoms}},
-        </div>
-        <div class="contenu">
-            {{booking.roomNumber}},
-        </div>
-        <div class="contenu">
-            Du
-            <b>{{booking.startDate | date:'EEEE'}}</b> {{booking.startDate | date:'dd MMMM yyyy'}} au
-            <b>{{booking.endDate | date:'EEEE'}}</b> {{booking.endDate | date:'dd MMMM yyyy'}}
-        </div>
-    </div>
-    <mat-grid-list cols="2">
+    <mat-grid-list cols="2" class="hideOnMobile">
         <mat-grid-tile>
             <div class="paiements" style="padding-right: 5px;">
                 <div class="dash total">
@@ -132,6 +140,120 @@
             </div>
         </mat-grid-tile>
     </mat-grid-list>
+    <div class="showOnMobile">
+        <div class="info-base">
+            <div class="paiements" style="padding-right: 0px;">
+                <div class="dash total">
+                    <div class="dash-titre">
+                        Montant attendu
+                    </div>
+                    <div class="dash-valeur">
+                        {{total | number}}
+                        <span>XAF</span>
+                    </div>
+                </div>
+                <div class="petit-titre">
+                    Détails de la réservation
+                </div>
+                <div class="ajouter">
+                    <form class="" #f2="ngForm">
+                        <mat-form-field>
+                            <mat-select name="additif" placeholder="Repas" [ngModel]="additif">
+                                <mat-option *ngFor="let r of repas" [value]="r">{{r.nom}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field>
+                            <input matInput type="number" name="quantite" [ngModel]="quantite" required>
+                        </mat-form-field>
+                        &nbsp;
+                        <button mat-raised-button color="primary" type="button" (click)="ajouterRepas(f2)">
+                            Ajouter
+                        </button>
+                    </form>
+                </div>
+                <div class="petit-contenu">
+                    <div class="date" style="float: right;">
+                        {{booking.total | number}} XAF
+                    </div>
+                    <div>
+                        <b>{{nombreJours}} </b>&nbsp; Nuitée {{booking.roomNumber}}
+                    </div>
+                </div>
+                <div *ngFor="let repasReservation of repasReservations" class="petit-contenu">
+                    <div class="date" style="float: right;">
+                        {{repasReservation.repas.cout * repasReservation.quantite | number}} XAF
+                    </div>
+                    <div>
+                        <b>{{repasReservation.quantite}}</b> &nbsp;{{repasReservation.repas.nom}}
+                    </div>
+                </div>
+                <div class="petit-contenu reduction">
+                    <div class="date" style="float: right;">
+                        - {{booking.reduction | number}} XAF
+                    </div>
+                    <div>
+                        <b style="opacity: 0;">0</b>&nbsp;Réduction
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-base">
+            <div class="paiements" style="padding-left: 0px;">
+                <div class="dash" [ngClass]="{'percu': montantPercu >= total, 'impayes': montantPercu < total}">
+                    <div class="dash-titre">
+                        Montant perçu
+                    </div>
+                    <div class="dash-valeur">
+                        {{montantPercu | number}}
+                        <span>XAF</span>
+                    </div>
+                </div>
+                <div class="petit-titre">
+                    Liste des paiements effectués
+                </div>
+                <div class="ajouter">
+                    <form class="" (ngSubmit)="ajouterPaiement(f)" #f="ngForm">
+
+                        <mat-form-field>
+                            <input matInput name="montant" placeholder="Montant" [ngModel]="montant" required>
+                        </mat-form-field>
+                        &nbsp;
+                        <mat-form-field>
+                            <mat-select name="mode" placeholder="Moyen de paiement" [ngModel]="mode">
+                                <mat-option value="OM">OM</mat-option>
+                                <mat-option value="MTN">MTN Mobile Money</mat-option>
+                                <mat-option value="ESPECS">Espèces</mat-option>
+                                <mat-option value="AUTRE">Autre</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        &nbsp;
+                        <button mat-raised-button color="primary" type="button" (click)="ajouterPaiement(f)">Ajouter</button>
+
+                    </form>
+                </div>
+                <div *ngFor="let paiement of paiements" class="petit-contenu">
+                    <span class="supprimer" style="display: none;">
+                        Supprimer
+                    </span>
+                    <div class="date" style="float: right;">
+                        {{paiement.date | date: 'dd-MM-yyyy HH:mm'}}
+                    </div>
+                    <div>
+                        {{paiement.montant | number}} XAF
+                    </div>
+                </div>
+                <div *ngIf="montantPercu < total" class="petit-contenu impaye">
+                    <div class="date" style="float: right;">
+                        {{total - montantPercu | number}} XAF
+                    </div>
+                    <div>
+                        <b style="opacity: 0;">0</b>&nbsp;Reste à payer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="">
     </div>
 </div>

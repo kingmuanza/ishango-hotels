@@ -31,6 +31,8 @@ import { PaiementEditComponent } from './components/paiement-edit/paiement-edit.
 import { RepasEditComponent } from './components/repas-edit/repas-edit.component';
 import { RepasListComponent } from './components/repas-list/repas-list.component';
 import { FactureVoirComponent } from './components/facture-voir/facture-voir.component';
+import { InfoUtilisateurComponent } from './component/info/info-utilisateur/info-utilisateur.component';
+import { InfoHotelComponent } from './component/info/info-hotel/info-hotel.component';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -50,6 +52,8 @@ registerLocaleData(localeFr, 'fr');
     RepasListComponent,
     RepasEditComponent,
     FactureVoirComponent,
+    InfoHotelComponent,
+    InfoUtilisateurComponent,
   ],
   entryComponents: [
     FormReservationComponent

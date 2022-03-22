@@ -22,6 +22,14 @@ body {
     margin-top: 20px;
 }
 
+@media only screen and (max-width: 599px) {
+    .grand-titre {
+        font-size: 14px;
+        font-weight: normal;
+        color: #111;
+    }
+}
+
 .mytoolbar {
     width: 100%;
     height: 60px;

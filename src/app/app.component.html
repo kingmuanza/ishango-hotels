@@ -36,6 +36,16 @@
                         <span>Repas</span>
                     </a>
                 </div>
+                <div class="nav">
+                    <a routerLink="/hotel" routerLinkActive="active" (click)="drawer.toggle()">
+                        <span>Infos Hotel</span>
+                    </a>
+                </div>
+                <div class="nav">
+                    <a routerLink="/hotel" routerLinkActive="active" (click)="drawer.toggle()">
+                        <span>Mon compte</span>
+                    </a>
+                </div>
             </div>
         </mat-drawer>
 
@@ -53,7 +63,7 @@
                             </span>
                     </div>
                     <div>
-                        <span class="muanza-menu-2" style="">
+                        <span class="muanza-menu-2">
                                 {{hotel ? hotel.nom: 'Aucun hotel'}}
                             </span>
                     </div>
@@ -66,7 +76,7 @@
             </div>
 
 
-            <div style="width: 100vw; height: 100vh; overflow: auto;">
+            <div style="width: 100vw; height: 100vh; overflow-x: hidden;">
                 <div class="contenu-page">
                     <router-outlet></router-outlet>
                 </div>

@@ -223,6 +223,20 @@ mat-grid-tile {
     padding: 15px;
 }
 
+@media only screen and (max-width: 599px) {
+    .dash {
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        line-height: 1.05;
+        -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+}
+
 .dash.total {
     background-color: #3f51b5;
 }
@@ -233,4 +247,31 @@ mat-grid-tile {
 
 .dash.impayes {
     background-color: brown;
+}
+
+@media only screen and (max-width: 599px) {
+    .hideOnMobile {
+        display: none;
+    }
+}
+
+.showOnMobile {
+    display: none;
+}
+
+@media only screen and (max-width: 599px) {
+    .showOnMobile {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .info-base {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.flotte {
+    float: right;
 }

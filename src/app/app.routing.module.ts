@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InfoHotelComponent } from './component/info/info-hotel/info-hotel.component';
+import { InfoUtilisateurComponent } from './component/info/info-utilisateur/info-utilisateur.component';
 import { ChambreEditComponent } from './components/chambre-edit/chambre-edit.component';
 import { ChambreListComponent } from './components/chambre-list/chambre-list.component';
 import { FactureVoirComponent } from './components/facture-voir/facture-voir.component';
@@ -26,6 +28,9 @@ const routes: Routes = [
   { path: 'reservations/edit/:id', component: ReservationEditComponent },
 
   { path: 'facture/voir/:id', component: FactureVoirComponent },
+
+  { path: 'hotel', component: InfoHotelComponent },
+  { path: 'utilisateur', component: InfoUtilisateurComponent },
 
   { path: 'chambres', component: ChambreListComponent },
   { path: 'chambres/edit', component: ChambreEditComponent },

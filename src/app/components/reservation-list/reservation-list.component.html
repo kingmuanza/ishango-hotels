@@ -3,9 +3,9 @@
         Liste des réservations
     </div>
     <div class="innerPanel">
-        <div>
+        <div class="rechercher">
             <mat-form-field>
-                <mat-select name="years" [ngModel]="years" (selectionChange)="onYearsChange($event)">
+                <mat-select name="years" [(ngModel)]="years" (selectionChange)="rechercher();">
                     <mat-option value="0">Toutes les années</mat-option>
                     <mat-option value="2022">2022</mat-option>
                     <mat-option value="2021">2021</mat-option>
@@ -13,7 +13,7 @@
             </mat-form-field>
             &nbsp;
             <mat-form-field>
-                <mat-select name="months" [ngModel]="months" (selectionChange)="onMonthsChange($event)">
+                <mat-select name="months" [(ngModel)]="months" (selectionChange)="rechercher()">
                     <mat-option value="0">Tous les mois</mat-option>
                     <mat-option value="1">Janvier</mat-option>
                     <mat-option value="2">Février</mat-option>
@@ -31,54 +31,77 @@
             </mat-form-field>
             &nbsp;
             <mat-form-field>
-                <input matInput placeholder="Noms" #fastsearch>
+                <input matInput [(ngModel)]="noms" placeholder="Noms" (input)="rechercher()">
             </mat-form-field>
             &nbsp;
-            <button (click)="actualiser()" mat-raised-button color="primary">Actualiser</button>
+            <button (click)="rechercher()" mat-raised-button color="primary">Rechercher</button> &nbsp;
+            <button (click)="actualiser()" mat-raised-button>Réinitialiser</button>
         </div>
-        <div class="ligne">
-            <div class="cellule">
-                <div class="gauche">
-                    <div class="dash impayes">
-                        <div class="dash-titre">
-                            Montant des impayés
-                        </div>
-                        <div class="dash-valeur">
-                            {{total - montantPercus | number}}
-                            <span>XAF</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cellule">
-                <div class="milieu">
-                    <div class="dash percu">
-                        <div class="dash-titre">
-                            Montant perçu
-                        </div>
-                        <div class="dash-valeur">
-                            {{montantPercus | number}}
-                            <span>XAF</span>
+        <div class="statistiques">
+            <div class="ligne">
+                <div class="cellule">
+                    <div class="gauche">
+                        <div class="dash impayes">
+                            <div class="dash-titre">
+                                Montant des impayés
+                            </div>
+                            <div class="dash-valeur">
+                                {{total - montantPercus | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cellule">
-                <div class="droite">
-                    <div class="dash total">
-                        <div class="dash-titre">
-                            Montant attendu
+                <div class="cellule">
+                    <div class="milieu">
+                        <div class="dash percu">
+                            <div class="dash-titre">
+                                Montant perçu
+                            </div>
+                            <div class="dash-valeur">
+                                {{montantPercus | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
-                        <div class="dash-valeur">
-                            {{total | number}}
-                            <span>XAF</span>
+                    </div>
+                </div>
+                <div class="cellule">
+                    <div class="droite">
+                        <div class="dash total">
+                            <div class="dash-titre">
+                                Montant attendu
+                            </div>
+                            <div class="dash-valeur">
+                                {{total | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="muanza-cards">
+            <div class="muanza-card" *ngFor="let person of resultats" (click)="onSelect(person)">
+                <mat-card>
+                    <div style="float: right;" class="tdCarre">
+                        <div *ngIf="person.payee" class="petit-carree-violet"></div>
+                        <div *ngIf="!person.payee" class="petit-carree-rouge"></div>
+                    </div>
+                    <mat-card-subtitle>{{ person.roomNumber }}</mat-card-subtitle>
+                    <mat-card-title style="font-size: 18px;">{{ person.name }}</mat-card-title>
+                    <mat-card-content style="font-size: 12px;">
+                        <p>Du {{ person.startDate | date: 'dd/MM/yyyy' }} au {{ person.endDate | date: 'dd/MM/yyyy' }}</p>
+                        <div>Total : {{ person.total | number }} XAF</div>
+                        <div>Reduction : {{ person.total | number }} XAF</div>
+                        <div>Cout : {{ person.total | number }} XAF</div>
+                        <div>Montant Percu : {{ person.total | number }} XAF</div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
         <div>
-            <table>
+            <table class="hideOnMobile">
                 <tr class="head">
                     <td class="tdCarre"></td>
                     <td>Porte</td>
@@ -91,7 +114,7 @@
                     <td style="text-align: right;">Montant perçu</td>
                     <td>Statut</td>
                 </tr>
-                <tr class="rows" *ngFor="let person of bookings" (click)="onSelect(person)" style="cursor: pointer;">
+                <tr class="rows" *ngFor="let person of resultats" (click)="onSelect(person)" style="cursor: pointer;">
                     <td class="tdCarre">
                         <div *ngIf="person.payee" class="petit-carree-violet"></div>
                         <div *ngIf="!person.payee" class="petit-carree-rouge"></div>
