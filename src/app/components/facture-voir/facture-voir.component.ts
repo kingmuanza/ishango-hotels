@@ -32,6 +32,8 @@ export class FactureVoirComponent implements OnInit {
   quantite = 1;
   nombreJours = 1;
 
+  date = new Date();
+
   mode = 'OM';
   montant = 0;
   hotel: Hotel;

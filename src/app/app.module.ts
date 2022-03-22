@@ -31,8 +31,9 @@ import { PaiementEditComponent } from './components/paiement-edit/paiement-edit.
 import { RepasEditComponent } from './components/repas-edit/repas-edit.component';
 import { RepasListComponent } from './components/repas-list/repas-list.component';
 import { FactureVoirComponent } from './components/facture-voir/facture-voir.component';
-import { InfoUtilisateurComponent } from './component/info/info-utilisateur/info-utilisateur.component';
-import { InfoHotelComponent } from './component/info/info-hotel/info-hotel.component';
+import { InfoUtilisateurComponent } from './components/info/info-utilisateur/info-utilisateur.component';
+import { InfoHotelComponent } from './components/info/info-hotel/info-hotel.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -78,6 +79,7 @@ registerLocaleData(localeFr, 'fr');
     MatToolbarModule,
     MatIconModule,
     MatDatepickerModule,
+    MatSnackBarModule,
     NativeDateModule
   ],
   providers: [

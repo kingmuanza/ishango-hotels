@@ -6,18 +6,26 @@
 <div class="facture" id="pdfTable" #pdfTable>
     <mat-grid-list cols="5" rowHeight="200px">
         <mat-grid-tile>
-            <img src="../../../assets/logodona.jpg" style="width: 80%; margin-bottom: 20px;" alt="">
+            <ng-container *ngIf="!hotel.logo">
+                <img src="../../../assets/logodona.jpg" style="width: 80%; margin-bottom: 20px;" alt="">
+            </ng-container>
+            <ng-container *ngIf="hotel.logo">
+                <img [src]="hotel.logo" style="width: 80%; margin-bottom: 20px;" alt="">
+            </ng-container>
         </mat-grid-tile>
         <mat-grid-tile>
             <div style="margin-left: 0px; padding-top: 20px; text-align: left;">
                 <div>
                     {{hotel ? hotel.nom: 'Aucun hotel'}}
                 </div>
-                <div>
-                    Tel : 696543495
+                <div *ngIf="hotel.tel">
+                    Tel : {{hotel.tel}}
                 </div>
-                <div>
-                    Email : 696543495
+                <div *ngIf="hotel.email">
+                    {{hotel.email}}
+                </div>
+                <div *ngIf="hotel.adresse">
+                    {{hotel.adresse}}
                 </div>
             </div>
         </mat-grid-tile>
@@ -45,10 +53,10 @@
     <div style="margin-top: 0px;">
         <b>
         Facture :
-      </b> 1234567899
+      </b> {{booking.bookingId.split('-')[0].toUpperCase()}}
     </div>
     <div style="text-align: left;">
-        Date : 2020-02-28
+        Date : {{date | date: 'yyyy-MM-dd'}}
     </div>
 
 

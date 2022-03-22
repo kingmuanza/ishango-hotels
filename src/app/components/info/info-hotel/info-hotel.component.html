@@ -1,0 +1,38 @@
+<div class="infos-hotel2">
+    <div class="grand-titre">
+        Informations sur l'hotel
+    </div>
+</div>
+<div class="infos-hotel">
+    <div *ngIf="hotel" class="innerPanel" style="margin-top: 20px;">
+
+        <div class="hotel-logo-container" [ngStyle]="{ 'background-image': 'url(' + url + ')'}">
+            <div (click)="changerImage()" class="hotel-logo" [ngStyle]="{ 'background-image': 'url(' + url + ')'}">
+                <mat-icon *ngIf="!url" aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+            </div>
+            <input type="file" (change)="onSelectFile($event)" #logo name="logo" id="logo" style="display: none;">
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Nom" [(ngModel)]="hotel.nom" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput placeholder="Téléphones" [(ngModel)]="hotel.tel">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="email" placeholder="Email" [(ngModel)]="hotel.email">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput placeholder="Adresse" [(ngModel)]="hotel.adresse">
+            </mat-form-field>
+            <br>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="enregistrer()">Enregistrer</button>
+        </div>
+
+    </div>
+</div>

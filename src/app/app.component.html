@@ -49,23 +49,23 @@
             </div>
         </mat-drawer>
 
-        <div class="application">
+        <div class="">
             <div class="muanza">
                 <div class="muanza-container">
                     <div>
                         <button class="mat-elevation-z0 muanza-menu" (click)="drawer.toggle()" style="background:none; cursor: pointer;">
-                                <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
-                            </button>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+                        </button>
                     </div>
                     <div>
                         <span style="width: 1px; display: inline-block; height: 24px; margin-top: 13px; background-color: #aaa;">
 
-                            </span>
+                        </span>
                     </div>
                     <div>
                         <span class="muanza-menu-2">
-                                {{hotel ? hotel.nom: 'Aucun hotel'}}
-                            </span>
+                            {{hotel ? hotel.nom: 'Aucun hotel'}}
+                        </span>
                     </div>
                     <div>
                         <a class="muanza-menu-3" *ngIf="utilisateur" (click)="deconnexion()">
@@ -76,7 +76,7 @@
             </div>
 
 
-            <div style="width: 100vw; height: 100vh; overflow-x: hidden;">
+            <div style="width: 100vw; height: 100vh; overflow-x: hidden; ">
                 <div class="contenu-page">
                     <router-outlet></router-outlet>
                 </div>
