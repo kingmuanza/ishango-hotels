@@ -3,7 +3,7 @@
         Liste des paiements
     </div>
     <div class="innerPanel">
-        <div>
+        <div class="rechercher">
             <mat-form-field>
                 <mat-select name="years" [ngModel]="years" (selectionChange)="onYearsChange($event)">
                     <mat-option value="0">Toutes les années</mat-option>
@@ -34,63 +34,97 @@
                 <input matInput placeholder="Noms" #fastsearch>
             </mat-form-field>
         </div>
-        <div class="ligne">
-            <div class="cellule">
-                <div class="gauche">
-                    <div class="dash impayes">
-                        <div class="dash-titre">
-                            Montant des impayés
-                        </div>
-                        <div class="dash-valeur">
-                            {{total - montantPercus | number}}
-                            <span>XAF</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cellule">
-                <div class="milieu">
-                    <div class="dash percu">
-                        <div class="dash-titre">
-                            Montant perçu
-                        </div>
-                        <div class="dash-valeur">
-                            {{montantPercus | number}}
-                            <span>XAF</span>
+        <div class="statistiques">
+            <div class="ligne">
+                <div class="cellule">
+                    <div class="gauche">
+                        <div class="dash impayes">
+                            <div class="dash-titre">
+                                Montant des impayés
+                            </div>
+                            <div class="dash-valeur">
+                                {{total - montantPercus | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cellule">
-                <div class="droite">
-                    <div class="dash total">
-                        <div class="dash-titre">
-                            Montant attendu
+                <div class="cellule">
+                    <div class="milieu">
+                        <div class="dash percu">
+                            <div class="dash-titre">
+                                Montant perçu
+                            </div>
+                            <div class="dash-valeur">
+                                {{montantPercus | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
-                        <div class="dash-valeur">
-                            {{total | number}}
-                            <span>XAF</span>
+                    </div>
+                </div>
+                <div class="cellule">
+                    <div class="droite">
+                        <div class="dash total">
+                            <div class="dash-titre">
+                                Montant attendu
+                            </div>
+                            <div class="dash-valeur">
+                                {{total | number}}
+                                <span>XAF</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="muanza-cards">
+            <div class="muanza-card" *ngFor="let paiement of paiements" (click)="voirReservation(paiement.bookingID)">
+                <mat-card>
+                    <mat-card-subtitle>{{ paiement.date | date: 'dd/MM/yyyy HH:mm' }}</mat-card-subtitle>
+                    <mat-card-title style="font-size: 18px;">
+                        <span style="color: #555;">
+                            {{ paiement.montant | number }} XAF
+                        </span>
+                    </mat-card-title>
+                    <mat-card-content style="font-size: 12px;">
+                        <div>
+                            {{ paiement.booking.name }}, {{ paiement.mode}}
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
         <div>
-            <table>
+            <table class="hideOnMobile">
                 <tr class="head">
-                    <td>Date</td>
+                    <td style="text-align: center;">Date</td>
+                    <td style="text-align: center;">Heure</td>
                     <td>Réservation</td>
                     <td>Occupant</td>
+                    <td>Mode</td>
                     <td style="text-align: right;">Montant perçu</td>
                 </tr>
                 <tr class="rows" *ngFor="let paiement of paiements" style="cursor: pointer;">
-                    <td class="tdDate">{{ paiement.date | date: 'dd/MM/yyyy HH:mm' }}</td>
-                    <td class="tdId">Réservation {{ paiement.bookingID }}</td>
-                    <td class="tdName">
-                        {{ paiement.booking.name }}
-                        <br> {{ paiement.booking.tel }}
+                    <td class="tdDate" style="text-align: center;">{{ paiement.date | date: 'dd/MM/yyyy' }}</td>
+                    <td class="tdDate" style="text-align: center;">{{ paiement.date | date: 'HH:mm' }}</td>
+                    <td class="tdDate">
+                        <a (click)="voirReservation(paiement.bookingID)">
+                            <span style="color: #3f51b5; cursor: pointer;">
+                                Réservation
+                            </span>
+                        </a>
                     </td>
-                    <td class="tdMontant" style="text-align: right;">{{ paiement.montant | number }}</td>
+                    <td class="tdName">
+                        {{ paiement.booking.name }}, {{ paiement.booking.tel }}
+                    </td>
+                    <td class="tdName">
+                        {{ paiement.mode }}
+                    </td>
+                    <td class="tdMontant" style="text-align: right;">
+                        <b>
+                            {{ paiement.montant | number }} XAF
+                        </b>
+                    </td>
                 </tr>
             </table>
 

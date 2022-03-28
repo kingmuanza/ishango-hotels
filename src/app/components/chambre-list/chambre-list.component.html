@@ -1,42 +1,76 @@
-<div class="grand-titre">
-    Liste des chambres
-</div>
-<div class="innerPanel">
-    <div class="boutons">
-        <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button> &nbsp;
-        <button (click)="actualiser()" mat-raised-button color="primary">Actualiser</button>
+<div class="page-mobile">
+    <div class="grand-titre">
+        Liste des chambres
     </div>
-    <div>
-        <table>
-            <thead>
-                <tr class="head">
-                    <td>Numéro Porte</td>
-                    <td>Nom</td>
-                    <td>Type de chambre</td>
-                    <td>Coût</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rows" *ngFor="let chambre of chambres" (click)="modifier(chambre)" style="cursor: pointer;">
-                    <td class="tdId">{{ chambre.roomId }}</td>
-                    <td class="tdId">{{ chambre.roomNumber }}</td>
-                    <td class="tdRoom">
-                        <ng-container *ngIf=" chambre.roomTypeName === '0' ">
-                            Single
-                        </ng-container>
-                        <ng-container *ngIf=" chambre.roomTypeName === '1' ">
-                            Double
-                        </ng-container>
-                        <ng-container *ngIf=" chambre.roomTypeName === '2' ">
-                            Suite
-                        </ng-container>
-                        <ng-container *ngIf=" chambre.roomTypeName === '3' ">
-                            Suite présidentielle
-                        </ng-container>
-                    </td>
-                    <td class="tdRoom">{{ chambre.cout | number}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="innerPanel">
+        <div class="boutons">
+            <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button> &nbsp;
+            <button (click)="actualiser()" mat-raised-button color="primary">Actualiser</button>
+        </div>
+
+        <div class="muanza-cards ">
+            <div class="muanza-card" *ngFor="let chambre of chambres" (click)="modifier(chambre)">
+                <mat-card>
+                    <mat-card-subtitle>{{ chambre.roomId }}</mat-card-subtitle>
+                    <mat-card-title style="font-size: 18px;">
+                        <span style="color: #555;">
+                            {{ chambre.roomNumber }}
+                        </span>
+                    </mat-card-title>
+                    <mat-card-content style="font-size: 12px;">
+                        <div>
+                            {{ chambre.cout | number}} XAF
+                        </div>
+                        <div>
+                            <ng-container *ngIf=" chambre.roomTypeName === '0' ">
+                                Single
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '1' ">
+                                Double
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '2' ">
+                                Suite
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '3' ">
+                                Suite présidentielle
+                            </ng-container>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="hideOnMobile">
+            <table>
+                <thead>
+                    <tr class="head">
+                        <td>Numéro Porte</td>
+                        <td>Nom</td>
+                        <td>Type de chambre</td>
+                        <td>Coût</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="rows" *ngFor="let chambre of chambres" (click)="modifier(chambre)" style="cursor: pointer;">
+                        <td class="tdId">{{ chambre.roomId }}</td>
+                        <td class="tdId">{{ chambre.roomNumber }}</td>
+                        <td class="tdRoom">
+                            <ng-container *ngIf=" chambre.roomTypeName === '0' ">
+                                Single
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '1' ">
+                                Double
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '2' ">
+                                Suite
+                            </ng-container>
+                            <ng-container *ngIf=" chambre.roomTypeName === '3' ">
+                                Suite présidentielle
+                            </ng-container>
+                        </td>
+                        <td class="tdRoom">{{ chambre.cout | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -88,10 +88,10 @@
             <tr class="rows">
                 <td class="tdName"></td>
                 <td class="tdDate"></td>
-                <td class="tdDate" style=" font-size: 18px;">
+                <td class="tdDate">
                     <b>Sous total</b>
                 </td>
-                <td class="tdDate" style="font-size: 18px;">
+                <td class="tdDate">
                     <b>{{ booking.cout * nombreJours | number }}</b>
                 </td>
             </tr>
@@ -115,31 +115,31 @@
             <tr class="rows">
                 <td class="tdName"></td>
                 <td class="tdDate"></td>
-                <td class="tdDate" style=" font-size: 18px;">
+                <td class="tdDate">
                     <b>Sous total</b>
                 </td>
-                <td class="tdDate" style="font-size: 18px;">
+                <td class="tdDate">
                     <b>{{ total  | number }}</b>
                 </td>
             </tr>
-            <tr class="rows">
+            <tr *ngIf="booking.reduction" class="rows">
                 <td class="tdName"></td>
                 <td class="tdDate"></td>
-                <td class="tdDate" style=" font-size: 18px;">
+                <td class="tdDate">
                     <b>Réduction</b>
                 </td>
-                <td class="tdDate" style="font-size: 18px;">
+                <td class="tdDate">
                     <b>-{{ booking.reduction  | number }}</b>
                 </td>
             </tr>
             <tr class="rows" style="background-color: orange;">
                 <td class="tdName"></td>
                 <td class="tdDate"></td>
-                <td class="tdDate" style=" font-size: 18px;">
+                <td class="tdDate">
                     <b>Total</b>
                 </td>
-                <td class="tdDate" style="font-size: 18px;">
-                    <b>{{ booking.cout * nombreJours + total - booking.reduction | number }}</b>
+                <td class="tdDate">
+                    <b>{{ total - booking.reduction | number }}</b>
                 </td>
             </tr>
         </table>

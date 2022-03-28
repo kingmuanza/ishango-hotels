@@ -1,27 +1,46 @@
-<div class="grand-titre">
-    Liste des repas
-</div>
-<div class="innerPanel">
-    <div class="boutons">
-        <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button>
+<div class="page-mobile">
+    <div class="grand-titre">
+        Liste des repas
     </div>
-    <div>
-        <table>
-            <thead>
-                <tr class="head">
-                    <td>Code</td>
-                    <td>Nom</td>
-                    <td>Prix</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rows" *ngFor="let r of repas" (click)="modifier(r)" style="cursor: pointer;">
+    <div class="innerPanel">
+        <div class="boutons">
+            <button (click)="nouveau()" mat-raised-button color="primary">Nouveau</button>
+        </div>
+        <div class="muanza-cards">
+            <div class="muanza-card" *ngFor="let r of repas" (click)="modifier(r)">
+                <mat-card>
+                    <mat-card-subtitle>{{ r.code }}</mat-card-subtitle>
+                    <mat-card-title style="font-size: 18px;">
+                        <span style="color: #555;">
+                            {{ r.nom }}
+                        </span>
+                    </mat-card-title>
+                    <mat-card-content style="font-size: 12px;">
+                        <div>
+                            {{ r.cout | number}} XAF
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="hideOnMobile">
+            <table>
+                <thead>
+                    <tr class="head">
+                        <td>Code</td>
+                        <td>Nom</td>
+                        <td>Prix</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="rows" *ngFor="let r of repas" (click)="modifier(r)" style="cursor: pointer;">
 
-                    <td (click)="modifier(r)" class="tdId">{{ r.code }}</td>
-                    <td class="tdRoom">{{ r.nom }}</td>
-                    <td class="tdRoom">{{ r.cout | number}}</td>
-                </tr>
-            </tbody>
-        </table>
+                        <td (click)="modifier(r)" class="tdId">{{ r.code }}</td>
+                        <td class="tdRoom">{{ r.nom }}</td>
+                        <td class="tdRoom">{{ r.cout | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

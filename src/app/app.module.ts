@@ -18,6 +18,7 @@ import { ChambreListComponent } from './components/chambre-list/chambre-list.com
 import { ChambreEditComponent } from './components/chambre-edit/chambre-edit.component';
 // tslint:disable-next-line:max-line-length
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, MatButtonToggleModule, MatToolbarModule, MatIconModule, MatDatepickerModule, NativeDateModule } from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
@@ -86,7 +87,8 @@ registerLocaleData(localeFr, 'fr');
     MatIconModule,
     MatDatepickerModule,
     MatSnackBarModule,
-    NativeDateModule
+    NativeDateModule,
+    MatTabsModule,
   ],
   providers: [
     ReservationService,

@@ -230,3 +230,11 @@ form {
         overflow-x: auto;
     }
 }
+
+@media only screen and (max-width: 599px) {
+    .nav {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+    }
+}

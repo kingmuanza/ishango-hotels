@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { BookingDto } from 'src/app/model/bookingdto';
 import { PersonDto } from 'src/app/model/persondto';
 import { SearchReservationArg } from 'src/app/scheduler/searchreservationargs';
 import { SelectReservationArg } from 'src/app/scheduler/selectreservationarg';
@@ -27,6 +29,7 @@ export class PaiementListComponent implements OnInit, AfterViewInit {
   total = 0;
 
   constructor(
+    private router: Router,
     private service: ReservationService,
     private paiementService: PaiementService
   ) { }
@@ -82,6 +85,10 @@ export class PaiementListComponent implements OnInit, AfterViewInit {
     const endDate = person.endDate;
     const args = new SelectReservationArg(roomId, startDate, endDate);
     this.selectreservation.emit(args);
+  }
+
+  voirReservation(id: string) {
+    this.router.navigate(['reservations', 'edit', id]);
   }
 
 }

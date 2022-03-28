@@ -22,6 +22,7 @@ export class ReservationEditComponent implements OnInit {
   repas = [];
   total = 0;
   montantPercu = 0;
+
   additif: any;
   quantite = 1;
   nombreJours = 1;
@@ -65,19 +66,23 @@ export class ReservationEditComponent implements OnInit {
     });
   }
 
-  ajouterPaiement(form: NgForm) {
-    const montant = form.value.montant;
-    const mode = form.value.mode;
+  ajouterPaiement() {
+    const montant = this.montant;
+    const mode = this.mode;
     console.log(montant);
     console.log(mode);
-    const paiement = new Paiement(this.booking, montant);
-    paiement.mode = mode;
-    console.log(paiement);
-    this.paiementService.save(paiement).then(() => {
-      this.montant = 0;
-      form.value.montant = 0;
-      this.getPaiements();
-    });
+    if (montant && mode) {
+      const paiement = new Paiement(this.booking, montant);
+      paiement.mode = mode;
+      console.log(paiement);
+      this.paiementService.save(paiement).then(() => {
+        this.montant = 0;
+        this.mode = '';
+        this.getPaiements();
+      });
+    } else {
+      alert('Veuillez entrer un montant et un mode de paiement');
+    }
   }
 
   getRepasReservation() {
@@ -95,20 +100,25 @@ export class ReservationEditComponent implements OnInit {
     });
   }
 
-  ajouterRepas(form: NgForm) {
-    const repas = form.value.additif;
-    const quantite = form.value.quantite;
-    const repasReservation = new RepasReservation();
-    repasReservation.idreservation = this.booking.bookingId;
-    repasReservation.repas = repas;
-    repasReservation.quantite = Number(quantite);
-    console.log('form.value');
-    console.log(form.value);
-    console.log(repasReservation);
-
-    this.repasReservationService.saveToFirebase(repasReservation).then(() => {
-      this.getRepasReservation();
-    });
+  ajouterRepas() {
+    console.log(this.additif);
+    console.log(this.quantite);
+    if (this.additif && this.quantite) {
+      const repas = this.additif;
+      const quantite = this.quantite;
+      const repasReservation = new RepasReservation();
+      repasReservation.idreservation = this.booking.bookingId;
+      repasReservation.repas = repas;
+      repasReservation.quantite = Number(quantite);
+      console.log(repasReservation);
+      this.repasReservationService.saveToFirebase(repasReservation).then(() => {
+        this.getRepasReservation();
+        this.additif = '';
+        this.quantite = 1;
+      });
+    } else {
+      alert('Veuillez sélectionner un repas et définir la quantité');
+    }
   }
 
   duree() {

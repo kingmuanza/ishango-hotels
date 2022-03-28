@@ -42,7 +42,7 @@ td:last-child {
 }
 
 .tdId {
-    width: 155px;
+    width: 55px;
 }
 
 .tdRoom {
@@ -52,7 +52,7 @@ td:last-child {
 }
 
 .tdDate {
-    width: 170px;
+    width: 100px;
 }
 
 .tdCarre {
@@ -71,10 +71,6 @@ td:last-child {
     padding-left: 4px;
 }
 
-.page {
-    padding-top: 20px;
-}
-
 .ligne {
     width: 100%;
     white-space: nowrap;
@@ -86,8 +82,21 @@ td:last-child {
     display: inline-block;
 }
 
+@media only screen and (max-width: 599px) {
+    .cellule {
+        width: 51%;
+        display: inline-block;
+    }
+}
+
 .gauche {
     padding-right: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+    .gauche {
+        padding-right: 5px;
+    }
 }
 
 .milieu {
@@ -95,8 +104,20 @@ td:last-child {
     padding-left: 10px;
 }
 
+@media only screen and (max-width: 599px) {
+    .milieu {
+        padding-left: 5px;
+    }
+}
+
 .droite {
     padding-left: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+    .droite {
+        padding-left: 2px;
+    }
 }
 
 div {
@@ -108,7 +129,21 @@ div {
     border-radius: 5px;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 599px) {
+    .dash {
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        line-height: 1.05;
+        -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
 }
 
 .dash.total {
@@ -128,8 +163,21 @@ div {
     margin-bottom: 5px;
 }
 
+@media only screen and (max-width: 599px) {
+    .dash-titre {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+}
+
 .dash-valeur {
-    font-size: 36px;
+    font-size: 28px;
+}
+
+@media only screen and (max-width: 599px) {
+    .dash-valeur {
+        font-size: 16px;
+    }
 }
 
 .mini {
@@ -146,4 +194,69 @@ div {
     height: 25px;
     width: 25px;
     background-color: brown;
+}
+
+@media only screen and (max-width: 599px) {
+    .rechercher {
+        display: none;
+    }
+}
+
+.page {
+    padding-top: 20px;
+}
+
+@media only screen and (max-width: 599px) {
+    .page {
+        margin: 0px;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .statistiques {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .grand-titre {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .hideOnMobile {
+        display: none;
+    }
+}
+
+.muanza-cards {
+    display: none;
+}
+
+@media only screen and (max-width: 599px) {
+    .muanza-cards {
+        display: block;
+        padding-bottom: 10vh;
+    }
+}
+
+.muanza-card {
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+.reservation-mobile {
+    height: 100px;
+    background-color: red;
+}
+
+.shadow-1 {
+    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
