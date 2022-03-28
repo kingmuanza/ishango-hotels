@@ -6,6 +6,9 @@ import { HeaderDays, MonthsDay } from '../model/headerdays';
 import { SelectReservationArg } from '../selectreservationarg';
 import { ChangeDateArg } from '../changedatearg';
 import { Utility } from 'src/app/appcore/utility';
+import { ChambreService } from 'src/app/service/chambre.service';
+import { PaiementService } from 'src/app/service/paiement.service';
+import { ReservationService } from 'src/app/service/reservation-service';
 
 @Component({
   selector: 'app-calendarnavbar',
@@ -30,7 +33,11 @@ export class CalendarNavbarComponent implements OnInit {
 
   roomtype = '0';
 
-  constructor() { }
+  constructor(
+    private chambreService: ChambreService,
+    private reservationService: ReservationService,
+    private paiementService: PaiementService,
+  ) { }
 
   ngOnInit() {
     this.init();
@@ -95,8 +102,33 @@ export class CalendarNavbarComponent implements OnInit {
     this.changeDays(this.type, 'prev');
   }
 
+  synchronisateur(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.chambreService.getAllFromFirebase().then((chambres) => {
+
+        console.log('Liste des chambres récupérés');
+        localStorage.setItem('hotel-chambres', JSON.stringify(chambres));
+
+        this.reservationService.getAllFromFirebase().then((reservations) => {
+
+          console.log('Liste des rserbvations récupérés');
+          localStorage.setItem('ishango-hotels-reservations', JSON.stringify(reservations));
+
+          this.paiementService.getAllFromFirebase().then((paiements) => {
+            console.log('Liste des paiements récupérés');
+            localStorage.setItem('ishango-hotels-paiements', JSON.stringify(paiements));
+            resolve('');
+          });
+        });
+      });
+    });
+  }
+
   actualiser() {
-    this.init();
+    this.synchronisateur().then(() => {
+      this.init();
+      window.location.reload();
+    });
     /* this.onNextMonth();
     setTimeout(() => {
       this.onPrevMonth();

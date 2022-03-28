@@ -8,6 +8,8 @@ import { AuthentificationService } from './service/authentification.service';
 import { Hotel } from './model/hotel';
 import { ChambreService } from './service/chambre.service';
 import { ReservationService } from './service/reservation-service';
+import { Router } from '@angular/router';
+import { PaiementService } from './service/paiement.service';
 
 @Component({
   selector: 'app-root',
@@ -29,9 +31,11 @@ export class AppComponent implements OnInit {
   // storage: FirebaseStorage;
 
   constructor(
+    private router: Router,
     private authService: AuthentificationService,
     private chambreService: ChambreService,
     private reservationService: ReservationService,
+    private paiementService: PaiementService,
   ) {
     const firebaseConfig = {
       apiKey: 'AIzaSyCvVQksw26HLWT_33_7cZ9EQ8f-EMeZSFc',
@@ -110,6 +114,7 @@ export class AppComponent implements OnInit {
   }
 
   autoConnexion() {
+    console.log('autoConnexion');
     const utilisateurString = localStorage.getItem('ishango-utilisateur');
     const hotelString = localStorage.getItem('ishango-hotel');
     if (utilisateurString && hotelString) {
@@ -117,6 +122,8 @@ export class AppComponent implements OnInit {
       this.hotel = JSON.parse(hotelString);
       this.authService.utilisateurGlobal = JSON.parse(utilisateurString);
       this.authService.hotelGlobal = JSON.parse(hotelString);
+      console.log(this.hotel);
+      console.log(this.utilisateur);
     } else {
 
     }
@@ -129,6 +136,7 @@ export class AppComponent implements OnInit {
       localStorage.removeItem('ishango-hotel');
       this.utilisateur = null;
       this.hotel = null;
+      this.router.navigate(['blanche']);
     }
   }
 
@@ -145,13 +153,28 @@ export class AppComponent implements OnInit {
   synchronisateur(idhotel: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.chambreService.getAllFromFirebase().then((chambres) => {
+
+        console.log('Liste des chambres récupérés');
         localStorage.setItem('hotel-chambres', JSON.stringify(chambres));
+
         this.reservationService.getAllFromFirebase().then((reservations) => {
+
+          console.log('Liste des rserbvations récupérés');
           localStorage.setItem('ishango-hotels-reservations', JSON.stringify(reservations));
-          resolve('');
+
+          this.paiementService.getAllFromFirebase().then((paiements) => {
+            console.log('Liste des paiements récupérés');
+            localStorage.setItem('ishango-hotels-paiements', JSON.stringify(paiements));
+            resolve('');
+          });
         });
       });
     });
+  }
+
+  compte(drawer: any) {
+    this.router.navigate(['compte']);
+    drawer.toggle();
   }
 
 }

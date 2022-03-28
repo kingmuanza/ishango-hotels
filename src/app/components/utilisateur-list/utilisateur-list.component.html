@@ -1,0 +1,37 @@
+<div class="page">
+    <div class="grand-titre">
+        Liste des utilisateurs
+        <div style="margin-top: 20px;margin-bottom: 20px;">
+            <button (click)="ajouter()" mat-raised-button color="primary">Ajouter un utilisateur</button>
+        </div>
+    </div>
+    <div class="innerPanel">
+        <div class="muanza-cards">
+            <div class="muanza-card" *ngFor="let person of resultats" (click)="onSelect(person)">
+                <mat-card>
+                    <mat-card-title style="font-size: 18px;">
+                        @{{ person.login }}
+                    </mat-card-title>
+                    <mat-card-subtitle>{{ person.nom }}, {{ person.profil}}</mat-card-subtitle>
+                </mat-card>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <table class="hideOnMobile">
+                <tr class="head">
+                    <td>Login</td>
+                    <td>Noms</td>
+                    <td>Profil</td>
+                    <td>Statut</td>
+                </tr>
+                <tr class="rows" *ngFor="let person of resultats" (click)="onSelect(person)" style="cursor: pointer;">
+                    <td class="tdId">{{ person.login }}</td>
+                    <td class="tdName">{{ person.nom }}</td>
+                    <td class="tdName">{{ person.profil }}</td>
+                    <td class="tdName"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

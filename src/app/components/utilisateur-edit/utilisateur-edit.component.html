@@ -1,0 +1,62 @@
+<div class="infos-utilisateur2">
+    <div *ngIf="!modification" class="grand-titre">
+        Ajouter un utilisateur
+    </div>
+    <div *ngIf="modification" class="grand-titre">
+        Modifier le compte : {{utilisateur.login}}
+    </div>
+</div>
+<div class="infos-utilisateur">
+    <div *ngIf="utilisateur" class="innerPanel" style="margin-top: 20px;">
+
+        <div *ngIf="modification" style="margin-bottom: 10px; color: #333;">
+            Informations personnelles
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Nom" [(ngModel)]="utilisateur.nom" required>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field *ngIf="modification">
+                <input matInput placeholder="Login" [(ngModel)]="utilisateur.login" readonly>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field *ngIf="!modification">
+                <input matInput placeholder="Login" [(ngModel)]="utilisateur.login">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <mat-select placeholder="Profil" [(ngModel)]="utilisateur.profil">
+                    <mat-option value="ADMIN">Administrateur</mat-option>
+                    <mat-option value="EMPLOYE">Employé</mat-option>
+                </mat-select>
+            </mat-form-field>
+            &nbsp;
+            <button *ngIf="modification" mat-raised-button color="primary" (click)="modifier()">
+                Modifier
+            </button>
+        </div>
+
+        <div *ngIf="modification" style="margin-bottom: 10px; color: #333; margin-top: 10px;">
+            Réinitialiser le mot de passe
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput type="password" placeholder="Nouveau mot de passe" [(ngModel)]="nouveau" required>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <input matInput type="password" placeholder="Confirmer le mot de passe" [(ngModel)]="confirmation" required>
+            </mat-form-field>
+            &nbsp;
+            <button *ngIf="modification" mat-raised-button color="primary" (click)="ajouter()">
+                Réinitialiser
+            </button>
+        </div>
+        <div *ngIf="!modification">
+            <button mat-raised-button color="primary" (click)="ajouter()">
+                Ajouter
+            </button>
+        </div>
+    </div>
+</div>

@@ -34,6 +34,9 @@ import { FactureVoirComponent } from './components/facture-voir/facture-voir.com
 import { InfoUtilisateurComponent } from './components/info/info-utilisateur/info-utilisateur.component';
 import { InfoHotelComponent } from './components/info/info-hotel/info-hotel.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UtilisateurListComponent } from './components/utilisateur-list/utilisateur-list.component';
+import { UtilisateurEditComponent } from './components/utilisateur-edit/utilisateur-edit.component';
+import { BlancheComponent } from './components/blanche/blanche.component';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -55,6 +58,9 @@ registerLocaleData(localeFr, 'fr');
     FactureVoirComponent,
     InfoHotelComponent,
     InfoUtilisateurComponent,
+    UtilisateurListComponent,
+    UtilisateurEditComponent,
+    BlancheComponent,
   ],
   entryComponents: [
     FormReservationComponent

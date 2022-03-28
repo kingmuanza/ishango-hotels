@@ -4,15 +4,22 @@
     overflow-x: hidden;
 }
 
+form {
+    padding: 0;
+    margin: 0;
+}
+
 .connexion {
     height: 100vh;
     width: 100vw;
     background-color: #3f51b5;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .connexion-box {
@@ -22,6 +29,8 @@
     overflow: hidden;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
+    margin: 0;
+    padding: 0;
 }
 
 @media only screen and (max-width: 599px) {
@@ -123,7 +132,7 @@
     border: 0px solid #ddd;
     display: inline-block;
     height: 50px;
-    width: 50px;
+    width: 80px;
     text-align: left;
 }
 
@@ -156,7 +165,7 @@
         height: 50px;
         display: inline-block;
         line-height: 50px;
-        width: 850px;
+        width: 820px;
         text-align: left;
         padding-left: 15px;
     }
@@ -200,5 +209,19 @@
         width: 100%;
         padding: 0px;
         margin: 0px;
+    }
+}
+
+.gros-conteneur {
+    height: calc(100vh - 60px);
+}
+
+@media only screen and (max-width: 599px) {
+    .gros-conteneur {
+        height: calc(100vh - 60px);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
     }
 }

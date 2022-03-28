@@ -14,9 +14,13 @@ import { RepasListComponent } from './components/repas-list/repas-list.component
 import { ReservationEditComponent } from './components/reservation-edit/reservation-edit.component';
 import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
 import { CalendarSearchOutComponent } from './scheduler/calendar-search/calendar-searchout.component';
+import { UtilisateurEditComponent } from './components/utilisateur-edit/utilisateur-edit.component';
+import { UtilisateurListComponent } from './components/utilisateur-list/utilisateur-list.component';
+import { BlancheComponent } from './components/blanche/blanche.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'blanche', pathMatch: 'full' },
+  { path: 'blanche', component: BlancheComponent },
   { path: 'dashboard', component: PageSchedulerComponent },
 
   { path: 'paiements', component: PaiementListComponent },
@@ -30,17 +34,21 @@ const routes: Routes = [
   { path: 'facture/voir/:id', component: FactureVoirComponent },
 
   { path: 'hotel', component: InfoHotelComponent },
-  { path: 'utilisateur', component: InfoUtilisateurComponent },
+  { path: 'compte', component: InfoUtilisateurComponent },
 
   { path: 'chambres', component: ChambreListComponent },
   { path: 'chambres/edit', component: ChambreEditComponent },
   { path: 'chambres/edit/:id', component: ChambreEditComponent },
 
+  { path: 'utilisateurs', component: UtilisateurListComponent },
+  { path: 'utilisateurs/edit', component: UtilisateurEditComponent },
+  { path: 'utilisateurs/edit/:id', component: UtilisateurEditComponent },
+
   { path: 'repas', component: RepasListComponent },
   { path: 'repas/edit', component: RepasEditComponent },
   { path: 'repas/edit/:id', component: RepasEditComponent },
 
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: 'blanche' }
 ];
 
 @NgModule({

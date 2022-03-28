@@ -104,7 +104,9 @@ export class InfoHotelComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (ev) => {
-        this.url = ev.target.result;
+        let x: any;
+        x = ev.target;
+        this.url = x.result;
       };
     }
   }

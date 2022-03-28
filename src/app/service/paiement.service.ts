@@ -44,6 +44,26 @@ export class PaiementService {
   }
 
 
+  getAllFromFirebase(): Promise<Array<Paiement>> {
+    return new Promise((resolve, reject) => {
+      if (this.authService.hotelGlobal && this.authService.hotelGlobal.id) {
+        const idhotel = this.authService.hotelGlobal.id;
+        const paiements = new Array<Paiement>();
+        const db = firebase.firestore();
+        db.collection('paiements').where('idhotel', '==', idhotel).get().then((resultats) => {
+          console.log('La liste des reservations a été récupérée');
+          resultats.forEach((resultat) => {
+            const paiement = resultat.data() as Paiement;
+            paiements.push(paiement);
+          });
+          console.log('paiements');
+          console.log(paiements);
+          resolve(paiements);
+        });
+      }
+    });
+  }
+
 
   public save(paiement: Paiement) {
     return new Promise((resolve, reject) => {

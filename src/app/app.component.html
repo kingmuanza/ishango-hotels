@@ -1,13 +1,17 @@
-<div class="application">
+<div class="application" [style.overflow]="!utilisateur ? 'hidden': 'auto'">
     <mat-drawer-container class="example-container" [hasBackdrop]="true">
 
         <mat-drawer #drawer class="example-sidenav" mode="over">
             <div class="menu-gauche">
-                <div style="padding-top: 60px;padding-bottom: 30px;">
-
-                    <div class="nav">
-                        <a>
-                            <span style="font-size: 1.3em;">Menu</span>
+                <div style="padding-top: 30px;padding-bottom: 30px;">
+                    <div class="nav" style="margin-bottom: 0px; padding-bottom: 0px;">
+                        <a (click)="compte(drawer)">
+                            <span style="font-size: 1.3em;">{{utilisateur?.nom}}</span>
+                        </a>
+                    </div>
+                    <div class="nav" style="color: #eee; margin-top: 10px; padding-top: 0px;">
+                        <a style="font-size: 1.0em;">
+                            {{utilisateur?.profil}}
                         </a>
                     </div>
                 </div>
@@ -26,24 +30,29 @@
                         <span>Paiements</span>
                     </a>
                 </div>
-                <div class="nav">
-                    <a routerLink="/chambres" routerLinkActive="active" (click)="drawer.toggle()">
-                        <span>Suites et chambres</span>
-                    </a>
-                </div>
-                <div class="nav">
-                    <a routerLink="/repas" routerLinkActive="active" (click)="drawer.toggle()">
-                        <span>Repas</span>
-                    </a>
-                </div>
-                <div class="nav">
+                <div class="nav" *ngIf="utilisateur?.profil  === 'ADMIN'">
                     <a routerLink="/hotel" routerLinkActive="active" (click)="drawer.toggle()">
                         <span>Infos Hotel</span>
                     </a>
                 </div>
+                <div class="nav" *ngIf="utilisateur?.profil  === 'ADMIN'">
+                    <a routerLink="/chambres" routerLinkActive="active" (click)="drawer.toggle()">
+                        <span>Suites et chambres</span>
+                    </a>
+                </div>
+                <div class="nav" *ngIf="utilisateur?.profil  === 'ADMIN'">
+                    <a routerLink="/repas" routerLinkActive="active" (click)="drawer.toggle()">
+                        <span>Repas</span>
+                    </a>
+                </div>
+                <div class="nav" *ngIf="utilisateur?.profil  === 'ADMIN'">
+                    <a routerLink="/utilisateurs" routerLinkActive="active" (click)="drawer.toggle()">
+                        <span>Utilisateurs</span>
+                    </a>
+                </div>
                 <div class="nav">
-                    <a routerLink="/hotel" routerLinkActive="active" (click)="drawer.toggle()">
-                        <span>Mon compte</span>
+                    <a (click)="deconnexion();drawer.toggle()">
+                        <span>Déconnexion</span>
                     </a>
                 </div>
             </div>
@@ -76,7 +85,7 @@
             </div>
 
 
-            <div style="width: 100vw; height: 100vh; overflow-x: hidden; ">
+            <div class="gros-conteneur">
                 <div class="contenu-page">
                     <router-outlet></router-outlet>
                 </div>

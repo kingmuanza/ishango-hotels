@@ -9,6 +9,6 @@ export class Utilisateur {
     profil: string;
 
     constructor() {
-
+        this.id = 'U_' + new Date().getTime();
     }
 }
