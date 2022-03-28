@@ -108,13 +108,12 @@
                     <td>Début</td>
                     <td>Fin</td>
                     <td>Occupant</td>
-                    <td style="text-align: right;">Total</td>
-                    <td style="text-align: right;">Reduction</td>
                     <td style="text-align: right;">Côut</td>
                     <td style="text-align: right;">Montant perçu</td>
                     <td>Statut</td>
+                    <td>Actions</td>
                 </tr>
-                <tr class="rows" *ngFor="let person of resultats" (click)="onSelect(person)" style="cursor: pointer;">
+                <tr class="rows" *ngFor="let person of resultats" style="cursor: pointer;">
                     <td class="tdCarre">
                         <div *ngIf="person.payee" class="petit-carree-violet"></div>
                         <div *ngIf="!person.payee" class="petit-carree-rouge"></div>
@@ -135,8 +134,6 @@
                         {{ person.name }}
                         <br> {{ person.tel }}
                     </td>
-                    <td class="tdMontant" style="text-align: right;">{{ person.total | number }}</td>
-                    <td class="tdMontant" style="text-align: right;">{{ person.reduction | number }}</td>
                     <td class="tdMontant" style="text-align: right;">{{ person.cout | number }}</td>
                     <td class="tdMontant" style="text-align: right;">{{ person.montantPercu | number }}</td>
                     <td class="tdName" style="text-align: center;">
@@ -148,6 +145,14 @@
                             Impayé<br>
                             <a class="mini" routerLink="/facture"> Enregistrer un paiement</a>
                         </ng-container>
+                    </td>
+                    <td class="tdName" style="text-align: center;">
+                        <button mat-icon-button color="primary" (click)="onSelect(person)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">visibility</mat-icon>
+                        </button>
+                        <button mat-icon-button style="color: brown;" (click)="onDelete(person)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                        </button>
                     </td>
                 </tr>
             </table>

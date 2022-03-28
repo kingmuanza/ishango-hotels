@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, Vie
 import { Router } from '@angular/router';
 import { Observable, fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { BookingDto } from 'src/app/model/bookingdto';
 import { PersonDto } from 'src/app/model/persondto';
 import { SearchReservationArg } from 'src/app/scheduler/searchreservationargs';
 import { SelectReservationArg } from 'src/app/scheduler/selectreservationarg';
@@ -36,7 +37,9 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
 
   actualiser() {
     this.reservationService.getAllFromFirebase().then((bookings) => {
-      this.bookings = bookings;
+      this.bookings = bookings.sort((b1, b2) => {
+        return new Date(b1.startDate).getTime() - new Date(b2.startDate).getTime() > 0 ? -1 : 1;
+      });
       this.resultats = bookings;
       this.montantPercus = 0;
       this.total = 0;
@@ -122,4 +125,20 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
     } else {
     }
   }
+
+  onDelete(person: BookingDto) {
+    const oui = confirm('Etes-vous sûr de vouloir supprimer la réservation ?');
+    if (oui) {
+      const id = person.bookingId;
+      this.reservationService.deleteInFirebase(id).then(() => {
+        this.reservationService.deleteReservation(id).subscribe(
+          result => {
+            this.actualiser();
+          },
+          error => alert(error)
+        );
+      });
+    }
+  }
+
 }

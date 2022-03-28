@@ -113,7 +113,7 @@ div {
     border-radius: 5px;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
 }
 
 .dash.total {
@@ -134,7 +134,7 @@ div {
 }
 
 .dash-valeur {
-    font-size: 36px;
+    font-size: 28px;
 }
 
 .mini {

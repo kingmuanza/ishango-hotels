@@ -1,7 +1,12 @@
 <div class="page">
-    <button mat-raised-button type="button" color="primary" (click)="facture()" class="hideOnMobile flotte">
-        Voir la facture
-    </button>
+    <div class="hideOnMobile flotte">
+        <button mat-raised-button type="button" style="background-color: brown; color: white;" (click)="facture()" class="hideOnMobile flotte">
+            Supprimer
+        </button> &nbsp;
+        <button mat-raised-button type="button" color="primary" (click)="facture()" class="hideOnMobile flotte" style="margin-right: 10px;">
+            Voir la facture
+        </button> &nbsp;
+    </div>
     <div class="info-base">
         <div class="grand-titre">
             Réservation
